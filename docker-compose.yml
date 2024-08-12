@@ -1,0 +1,46 @@
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    volumes:
+      # - ./db_data:/var/lib/mysql  # MySQL 데이터를 호스트에 저장하고 싶으면 주석 삭제.
+      - ./backend/src/db_initial_setting.sql:/docker-entrypoint-initdb.d/01_create_tables.sql  # 테이블 생성 스크립트
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf  # 사용자 정의 MySQL 설정 파일
+    ports:
+      - "3306:3306"
+
+  redis:
+    image: "redis:7.4"
+    command: >
+      redis-server --requirepass mypassword
+    ports:
+      - "6379:6379"
+
+  main-server:
+    image: node:22  # Node.js 이미지 사용
+    working_dir: /app/backend
+    volumes:
+      - ./:/app     # 현재 디렉토리를 컨테이너의 /app 디렉토리에 마운트
+      - /app/backend/node_modules  # node_modules 디렉토리를 볼륨으로 지정
+    ports:
+      - "4000:3000"
+    command: sh -c "./wait-for-it.sh mysql:3306 -- ./wait-for-it.sh redis:6379 -- npm install && npm run start-main"
+    depends_on:
+      - mysql
+      - redis
+
+  cron-server:
+    image: node:22  # Node.js 이미지 사용
+    working_dir: /app/backend
+    volumes:
+      - ./:/app     # 현재 디렉토리를 컨테이너의 /app 디렉토리에 마운트
+      - /app/backend/node_modules  # node_modules 디렉토리를 볼륨으로 지정
+    command: sh -c "./wait-for-it.sh mysql:3306 -- ./wait-for-it.sh redis:6379 -- npm install && npm run start-cron"
+    depends_on:
+      - mysql
+      - redis
+

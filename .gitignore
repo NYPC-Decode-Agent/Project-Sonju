@@ -1,0 +1,20 @@
+# Common
+
+.DS_Store
+
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+pids
+*.pid
+*.seed
+*.pid.lock
+
+node_modules/
+
+*.tsbuildinfo
+.eslintcache

@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "typeRoots" : ["./node_modules/@types"],
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "strict": true,
+    "target": "ES6",
+    "module": "commonjs",
+    "baseUrl": "./",
+    "rootDir": "../",
+    "outDir": "./dist",
+    "paths": {
+      "@shared/*": ["../shared/*"]
+    },
+  },
+  "include": ["src/**/*", "../shared/dto.ts"],
+  "exclude": ["node_modules"]
+}
