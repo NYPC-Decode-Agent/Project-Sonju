@@ -44,3 +44,14 @@ services:
       - mysql
       - redis
 
+  web-server:
+    image: node:22  # Node.js 이미지 사용
+    working_dir: /app/frontend
+    volumes:
+      - ./:/app     # 현재 디렉토리를 컨테이너의 /app 디렉토리에 마운트
+      - /app/frontend/node_modules  # node_modules 디렉토리를 볼륨으로 지정
+    ports:
+      - "3000:3000"
+    command: sh -c "npm install && npm run start"
+
+
