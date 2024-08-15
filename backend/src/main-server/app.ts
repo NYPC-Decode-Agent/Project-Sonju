@@ -5,6 +5,7 @@ import RedisStore from "connect-redis";
 import config from "../config";
 import { ICb1 } from "../types/common";
 import { createClient } from "redis";
+import bodyParser from "body-parser";
 const session = require("express-session");
 const cors = require("cors");
 
@@ -79,6 +80,9 @@ function startServer() {
       },
     })
   );
+
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
 
   app.get("/liveness", (req: Request, res: Response) => {
     res.status(200).send("ALIVE");

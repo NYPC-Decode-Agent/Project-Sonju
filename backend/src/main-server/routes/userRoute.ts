@@ -14,4 +14,9 @@ router.get("/v0/user/sign-out", (req: Request, res: Response) => {
   res.send("Hello, World!2");
 });
 
+router.post("/v0/user/sign-in", (req: Request, res: Response) => {
+  console.log(req.body);
+  res.json("Hello, World!4");
+});
+
 export default router;
