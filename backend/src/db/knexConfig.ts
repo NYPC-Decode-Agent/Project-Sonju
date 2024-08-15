@@ -15,8 +15,4 @@ const knexConfig: Knex.Config = {
 
 const db: Knex = require("knex")(knexConfig);
 
-interface ITable {
-  test: string;
-}
-
 export default db;

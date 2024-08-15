@@ -13,6 +13,7 @@ const defaultConfig: IConfig = {
   MY_SQL: {
     PORT: 3306,
     HOST: "mysql",
+    // HOST: "127.0.0.1",
     USER: "myuser",
     PASSWORD: "mypassword",
     DATABASE: "mydatabase",

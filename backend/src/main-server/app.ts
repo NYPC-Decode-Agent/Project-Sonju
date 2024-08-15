@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import mainRoute from "./routes/mainRoute";
-import db from "../db/knexfiles";
+import db from "../db/knexConfig";
 import RedisStore from "connect-redis";
 import config from "../config";
 import { ICb1 } from "../types/common";
