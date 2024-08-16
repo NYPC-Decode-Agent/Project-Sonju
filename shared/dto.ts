@@ -4,19 +4,21 @@ export interface infoGetResponseDto {
     phone: string;
     name: string;
   };
-  customerInfo: {
-    id: number;
-    phone: string;
-    name: string;
-    age: number;
-    callSchedule: {
-      isRepetition: boolean;
-      dayOfWeek: boolean[];
-      time: string;
-      isActive: boolean;
-      script: string;
-    }[];
-  };
+  customerInfo: ICustomerInfo[];
+}
+
+export interface ICustomerInfo {
+  id: number;
+  phone: string;
+  name: string;
+  age: number;
+  alarm: {
+    isRepetition: boolean;
+    dayOfWeek: boolean[];
+    time: string;
+    isActive: boolean;
+    script: string;
+  }[];
 }
 
 // 회원가입
@@ -75,7 +77,7 @@ export interface alarmPostRequestDto {
   customerInfo: {
     id: number;
   };
-  callSchedule: {
+  alarm: {
     isRepetition: boolean;
     dayOfWeek: boolean[];
     time: string;
@@ -90,7 +92,7 @@ export interface alarmPutRequestDto {
   customerInfo: {
     id: number;
   };
-  callSchedule: {
+  alarm: {
     id: number;
     isRepetition: boolean;
     dayOfWeek: boolean[];
@@ -106,7 +108,7 @@ export interface alarmDeleteRequestDto {
   customerInfo: {
     id: number;
   };
-  callSchedule: {
+  alarm: {
     id: number;
   };
 }
