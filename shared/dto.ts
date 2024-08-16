@@ -77,15 +77,16 @@ export interface alarmPostRequestDto {
   customerInfo: {
     id: number;
   };
-  alarm: {
-    isRepetition: boolean;
-    dayOfWeek: boolean[];
-    time: string;
-    isActive: boolean;
-    script: string;
-  };
+  alarm: IAlarm;
 }
 
+export interface IAlarm {
+  isRepetition: boolean;
+  dayOfWeek: boolean[];
+  time: string;
+  isActive: boolean;
+  script: string;
+}
 // customer의 alarm  수정
 
 export interface alarmPutRequestDto {
