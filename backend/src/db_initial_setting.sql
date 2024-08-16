@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS `mydatabase`.`users`(
     `phone` VARCHAR(255) NULL UNIQUE,  -- 전화번호를 저장할 열
     `name` VARCHAR(255) DEFAULT "",  -- 사용자 이름을 저장할 열
     `password` VARCHAR(255) NOT NULL,  -- 비밀번호 해시를 저장할 열
-    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `deleted_at` TIMESTAMP DEFAULT NULL
+    -- `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    -- `deleted_at` TIMESTAMP DEFAULT NULL
 );
 
 
@@ -22,8 +22,8 @@ CREATE TABLE IF NOT EXISTS `mydatabase`.`customer`(
     `phone` VARCHAR(255) NULL UNIQUE,  -- 전화번호를 저장할 열
     `name` VARCHAR(255) DEFAULT "",  -- 사용자 이름을 저장할 열
     `age` INT DEFAULT 0,  -- 나이를 저장할 열
-    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `deleted_at` TIMESTAMP DEFAULT NULL,
+    -- `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    -- `deleted_at` TIMESTAMP DEFAULT NULL,
     INDEX idx_user_id_deleted_at (user_id, deleted_at) -- 결합 인덱스
 );
 
@@ -39,8 +39,9 @@ CREATE TABLE IF NOT EXISTS `mydatabase`.`alarm` (
     `day_of_week` JSON DEFAULT NULL,  -- 요일을 저장할 열
     `time` TIME DEFAULT NULL,  -- 시간을 저장할 열
     `is_active` BOOLEAN DEFAULT TRUE,  -- 활성화 여부를 저장할 열
-    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `deleted_at` TIMESTAMP DEFAULT NULL,
+    `script` VARCHAR(5000) DEFAULT NULL,  -- 스크립트를 저장할 열
+    -- `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    -- `deleted_at` TIMESTAMP DEFAULT NULL,
     INDEX idx_user_id_customer_id_deleted_at (user_id, customer_id, deleted_at), -- 결합 인덱스
     INDEX idx_time_is_active_deleted_at (time, is_active, deleted_at) -- 결합 인덱스
 );
