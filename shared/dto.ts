@@ -1,34 +1,112 @@
-export interface signInRequestDto {
+// 유저의 대해 모든 customer 정보 긁어오기
+export interface infoGetResponseDto {
   userInfo: {
     phone: string;
-    username: string;
-    age: number;
+    name: string;
   };
-  emergencyContact: {
+  customerInfo: {
+    id: number;
     phone: string;
-    username: string;
+    name: string;
     age: number;
-    relationship: string;
-  }[];
+    callSchedule: {
+      isRepetition: boolean;
+      dayOfWeek: boolean[];
+      time: string;
+      isActive: boolean;
+      script: string;
+    }[];
+  };
 }
 
-export interface userInfoResponseDto {
-  csrfToken: string;
+// 회원가입
+export interface signUpPostRequestDto {
   userInfo: {
     phone: string;
-    username: string;
+    name: string;
+    password: string;
+  };
+}
+
+//로그인
+export interface signInPostRequestDto {
+  userInfo: {
+    phone: string;
+    password: string;
+  };
+}
+
+// 유저 정보 수정
+export interface userPutRequestDto {
+  userInfo: {
+    name: string;
+    password: string;
+  };
+}
+
+// customer의 등록
+export interface customerPostRequestDto {
+  customerInfo: {
+    phone: string;
+    name: string;
     age: number;
   };
-  emergencyContact: {
+}
+
+// customer 정보 수정
+export interface customerPutRequestDto {
+  customerInfo: {
+    id: number;
     phone: string;
-    username: string;
+    name: string;
     age: number;
-    relationship: string;
-  }[];
+  };
+}
+
+// customer 삭제
+export interface customerDeleteRequestDto {
+  customerInfo: {
+    id: number;
+  };
+}
+
+// customer의 alarm  등록
+export interface alarmPostRequestDto {
+  customerInfo: {
+    id: number;
+  };
   callSchedule: {
     isRepetition: boolean;
     dayOfWeek: boolean[];
     time: string;
-    isActivated: boolean;
-  }[];
+    isActive: boolean;
+    script: string;
+  };
+}
+
+// customer의 alarm  수정
+
+export interface alarmPutRequestDto {
+  customerInfo: {
+    id: number;
+  };
+  callSchedule: {
+    id: number;
+    isRepetition: boolean;
+    dayOfWeek: boolean[];
+    time: string;
+    isActive: boolean;
+    script: string;
+  };
+}
+
+// customer의 alarm 삭제
+
+export interface alarmDeleteRequestDto {
+  customerInfo: {
+    id: number;
+  };
+  callSchedule: {
+    id: number;
+  };
 }

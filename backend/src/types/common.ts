@@ -1,5 +1,10 @@
-import { signInRequestDto } from "@shared/dto";
+import "express-session";
 
+declare module "express-session" {
+  interface SessionData {
+    userId?: number; // 필요한 속성 추가
+  }
+}
 export interface IConfig {
   REDIS: {
     USER: string;
@@ -36,8 +41,4 @@ export interface ICb {
 }
 export interface ICb1<T> {
   (err: Error | null, result: T): void;
-}
-
-export interface ItestForShared {
-  test: signInRequestDto;
 }
