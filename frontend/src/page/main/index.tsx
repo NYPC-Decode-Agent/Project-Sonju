@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Header from "../../components/Header";
-import { Sidebar } from "../../components/Sidebar";
 import routes from "../../router/routes";
 import { Footer } from "../../common/Footer";
+import Header from "../../common/Header";
 
 export const Main = () => {
   const [value, setValue] = useState("김철수");
@@ -17,10 +16,6 @@ export const Main = () => {
     <Router>
       <div className="App">
         <Header toggleSidebar={toggleSidebar} />
-        <Sidebar
-          isOpen={isSidebarOpen}
-          closeSidebar={() => setSidebarOpen(false)}
-        />
         <header className="App-header app-container"></header>
         <main>
           <Routes>
