@@ -1,11 +1,9 @@
 import { Request, Response, Router } from "express";
 import { sessionChecker } from "../middlewares/authMiddleware";
 import {
-  customerDeleteRequestDto,
-  customerPostRequestDto,
-  customerPutRequestDto,
-  signInPostRequestDto,
-  signUpPostRequestDto,
+  CustomerDeleteRequestDto,
+  CustomerPostRequestDto,
+  CustomerPutRequestDto,
 } from "@shared/dto";
 import * as customerQuery from "../../db/queries/customerQuery";
 
@@ -14,9 +12,9 @@ router.post(
   "/api/customer",
   sessionChecker,
   async (req: Request, res: Response) => {
-    const body: customerPostRequestDto = req.body;
+    const body: CustomerPostRequestDto = req.body;
     try {
-      const result = await customerQuery.insertCustomer(
+      await customerQuery.insertCustomer(
         req.session.userId!,
         body.customerInfo.phone,
         body.customerInfo.name,
@@ -34,7 +32,7 @@ router.put(
   "/api/customer",
   sessionChecker,
   async (req: Request, res: Response) => {
-    const body: customerPutRequestDto = req.body;
+    const body: CustomerPutRequestDto = req.body;
     try {
       await customerQuery.updateCustomer(
         req.session.userId!,
@@ -55,7 +53,7 @@ router.delete(
   "/api/customer",
   sessionChecker,
   async (req: Request, res: Response) => {
-    const body: customerDeleteRequestDto = req.body;
+    const body: CustomerDeleteRequestDto = req.body;
     try {
       await customerQuery.deleteCustomer(
         req.session.userId!,
