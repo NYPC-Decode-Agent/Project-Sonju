@@ -9,6 +9,7 @@ const router = Router();
 router.post("/api/user/sign-up", async (req: Request, res: Response) => {
   const body: signUpPostRequestDto = req.body;
   let result: number[];
+  console.log(body);
   try {
     result = await userQuery.insert(
       body.userInfo.phone,
@@ -16,6 +17,7 @@ router.post("/api/user/sign-up", async (req: Request, res: Response) => {
       body.userInfo.password
     );
   } catch (e) {
+    console.log(e);
     res.status(400).send("회원가입 실패");
     return;
   }

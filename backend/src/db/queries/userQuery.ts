@@ -6,7 +6,7 @@ export function insert(
   name: string,
   password: string
 ): Promise<number[]> {
-  return db("customer").insert({
+  return db("users").insert({
     phone: phone,
     name: name,
     password: password,
@@ -14,7 +14,7 @@ export function insert(
 }
 
 export function getByPhone(phone: string): Promise<UserSchema[]> {
-  return db("customer").where("phone", phone);
+  return db("users").where("phone", phone);
 }
 
 export function update(
@@ -22,7 +22,7 @@ export function update(
   name: string,
   password: string
 ): Promise<void> {
-  return db("customer").where("id", id).update({
+  return db("users").where("id", id).update({
     name: name,
     password: password,
   });
