@@ -18,13 +18,13 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
           </Typography>
           <div className="flex">
             <Button color="inherit">
-              <Link className="no-underline" to={"/login"}>
+              <Link className="no-underline" to={"/signup"}>
                 회원가입
               </Link>
             </Button>
             <div className="flex text-[#CCCCCC] items-center pb-1">|</div>
             <Button color="inherit">
-              <Link className="no-underline" to={"/signup"}>
+              <Link className="no-underline" to={"/login"}>
                 로그인
               </Link>
             </Button>
