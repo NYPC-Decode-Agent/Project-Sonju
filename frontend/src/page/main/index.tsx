@@ -3,6 +3,7 @@ import "./App.css";
 import { Button } from "../../common/button";
 import { Input } from "../../common/Input";
 import { useState } from "react";
+import { Footer } from "../../common/Footer";
 
 export const Main = () => {
   const [value, setValue] = useState("김철수");
@@ -15,7 +16,8 @@ export const Main = () => {
         </p>
         <Input onChange={setValue} value={value} label="이름" />
         <Button onClick={() => {}}>Learn React</Button>
-        </header>
+      </header>
+      <Footer />
     </div>
   );
 };
