@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 import routes from "../../router/routes";
-import { Footer } from "../../common/footer";
+import { Footer } from "../../common/Footer";
 
 export const Main = () => {
   const [value, setValue] = useState("김철수");
