@@ -20,8 +20,11 @@ export default function Home() {
 
     return (
         <div>
-            <h1>Home Page</h1>
-            <UpdateNumber num={num} updateNum={updateNum}/>
+            <div className="h-96" style={{backgroundImage: `url("./landing1.png")`}}></div>
+            <div className="h-96" style={{backgroundImage: `url("./landing2.png")`}}></div>
+            <div className="h-96" style={{backgroundImage: `url("./landing3.png")`}}></div>
+            <div className="h-96 bg-white"></div>
+            <div className="h-96" style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.375), rgba(0, 0, 0, 0.375)), url("./landing4.png")`}}></div>
         </div>
     )
 }
