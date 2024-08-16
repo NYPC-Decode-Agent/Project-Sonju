@@ -64,3 +64,5 @@ export default function Home() {
     </div>
   );
 }
+
+// <textarea className="flex w-full rounded-md outline-none transition border border-gray-400 hover:border-gray-900 focus:border-gray-900">{script}</textarea>
