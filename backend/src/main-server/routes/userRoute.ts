@@ -30,12 +30,20 @@ router.post("/api/user/sign-in", async (req: Request, res: Response) => {
   let result: UserSchema[];
   try {
     result = await userQuery.getByPhone(body.userInfo.phone);
+    if (result.length === 0) {
+      res.status(400).send("로그인 실패");
+      return;
+    }
+    if (result[0].password !== body.userInfo.password) {
+      res.status(400).send("로그인 실패");
+      return;
+    }
+    req.session.userId = result[0].id;
+    res.status(200).send("로그인 성공");
   } catch (e) {
     res.status(400).send("로그인 실패");
     return;
   }
-  req.session.userId = result[0].id;
-  res.status(200).send("로그인 성공");
 });
 
 router.post(
