@@ -2,7 +2,7 @@ import { Request, Response, Router } from "express";
 import { sessionChecker } from "../middlewares/authMiddleware";
 import { signInPostRequestDto, signUpPostRequestDto } from "@shared/dto";
 import * as userQuery from "../../db/queries/userQuery";
-import { UserSchema } from "src/types/schema";
+import { IUserSchema } from "src/types/schema";
 
 const router = Router();
 
@@ -27,7 +27,7 @@ router.post("/api/user/sign-up", async (req: Request, res: Response) => {
 
 router.post("/api/user/sign-in", async (req: Request, res: Response) => {
   const body: signInPostRequestDto = req.body;
-  let result: UserSchema[];
+  let result: IUserSchema[];
   try {
     result = await userQuery.getByPhone(body.userInfo.phone);
     if (result.length === 0) {
