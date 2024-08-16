@@ -1,11 +1,27 @@
 import { EmergencyContactEntity } from "./entity";
 
-export interface UserSchema {
+export interface IUserSchema {
   id: number;
   phone: string;
-  username: string;
+  name: string;
   password: string;
+}
+
+export interface ICustomerSchema {
+  id: number;
+  user_id: number;
+  phone: string;
+  name: string;
   age: number;
-  createdAt: Date;
-  deletedAt: Date | null;
+}
+
+export interface IAlarmSchema {
+  id: number;
+  user_id: number;
+  customer_id: number;
+  is_repetition: boolean;
+  day_of_week: boolean[];
+  time: string;
+  is_active: boolean;
+  script: string;
 }

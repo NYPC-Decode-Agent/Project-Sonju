@@ -12,13 +12,15 @@ export interface ICustomerInfo {
   phone: string;
   name: string;
   age: number;
-  alarm: {
-    isRepetition: boolean;
-    dayOfWeek: boolean[];
-    time: string;
-    isActive: boolean;
-    script: string;
-  }[];
+  alarm: (IAlarm & { id: number })[];
+}
+
+export interface IAlarm {
+  isRepetition: boolean;
+  dayOfWeek: boolean[];
+  time: string;
+  isActive: boolean;
+  script: string;
 }
 
 // 회원가입
@@ -80,15 +82,7 @@ export interface alarmPostRequestDto {
   alarm: IAlarm;
 }
 
-export interface IAlarm {
-  isRepetition: boolean;
-  dayOfWeek: boolean[];
-  time: string;
-  isActive: boolean;
-  script: string;
-}
 // customer의 alarm  수정
-
 export interface alarmPutRequestDto {
   customerInfo: {
     id: number;
