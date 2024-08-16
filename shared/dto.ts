@@ -1,5 +1,5 @@
 // 유저의 대해 모든 customer 정보 긁어오기
-export interface infoGetResponseDto {
+export interface InfoGetResponseDto {
   userInfo: {
     phone: string;
     name: string;
@@ -16,7 +16,6 @@ export interface ICustomerInfo {
 }
 
 export interface IAlarm {
-  isRepetition: boolean;
   dayOfWeek: boolean[];
   time: string;
   isActive: boolean;
@@ -24,7 +23,7 @@ export interface IAlarm {
 }
 
 // 회원가입
-export interface signUpPostRequestDto {
+export interface SignUpPostRequestDto {
   userInfo: {
     phone: string;
     name: string;
@@ -33,7 +32,7 @@ export interface signUpPostRequestDto {
 }
 
 //로그인
-export interface signInPostRequestDto {
+export interface SignInPostRequestDto {
   userInfo: {
     phone: string;
     password: string;
@@ -41,7 +40,7 @@ export interface signInPostRequestDto {
 }
 
 // 유저 정보 수정
-export interface userPutRequestDto {
+export interface UserPutRequestDto {
   userInfo: {
     name: string;
     password: string;
@@ -49,7 +48,7 @@ export interface userPutRequestDto {
 }
 
 // customer의 등록
-export interface customerPostRequestDto {
+export interface CustomerPostRequestDto {
   customerInfo: {
     phone: string;
     name: string;
@@ -58,7 +57,7 @@ export interface customerPostRequestDto {
 }
 
 // customer 정보 수정
-export interface customerPutRequestDto {
+export interface CustomerPutRequestDto {
   customerInfo: {
     id: number;
     phone: string;
@@ -68,14 +67,14 @@ export interface customerPutRequestDto {
 }
 
 // customer 삭제
-export interface customerDeleteRequestDto {
+export interface CustomerDeleteRequestDto {
   customerInfo: {
     id: number;
   };
 }
 
 // customer의 alarm  등록
-export interface alarmPostRequestDto {
+export interface AlarmPostRequestDto {
   customerInfo: {
     id: number;
   };
@@ -83,7 +82,7 @@ export interface alarmPostRequestDto {
 }
 
 // customer의 alarm  수정
-export interface alarmPutRequestDto {
+export interface AlarmPutRequestDto {
   customerInfo: {
     id: number;
   };
@@ -98,8 +97,7 @@ export interface alarmPutRequestDto {
 }
 
 // customer의 alarm 삭제
-
-export interface alarmDeleteRequestDto {
+export interface AlarmDeleteRequestDto {
   customerInfo: {
     id: number;
   };

@@ -1,36 +1,15 @@
 import { IAlarm } from "@shared/dto";
 import db from "../knexConfig";
+import { IAlarmSchema } from "src/types/schema";
 
-export function insertAlarm(
-  user_id: number,
-  customer_id: number,
-  alarm: IAlarm
-): Promise<number[]> {
-  return db("alarm").insert({
-    user_id: user_id,
-    customer_id: customer_id,
-    is_repetition: alarm.isRepetition,
-    day_of_week: alarm.dayOfWeek,
-    time: alarm.time,
-    is_active: alarm.isActive,
-    script: alarm.script,
-  });
+export function insertAlarm(data: Omit<IAlarmSchema, "id">): Promise<number[]> {
+  return db("alarm").insert(data);
 }
 
-export function updateAlarm(
-  user_id: number,
-  customer_id: number,
-  alarm: IAlarm
-): Promise<void> {
+export function updateAlarm(data: IAlarmSchema): Promise<void> {
   return db("alarm")
-    .where({ user_id: user_id, customer_id: customer_id })
-    .update({
-      is_repetition: alarm.isRepetition,
-      day_of_week: alarm.dayOfWeek,
-      time: alarm.time,
-      is_active: alarm.isActive,
-      script: alarm.script,
-    });
+    .where({ user_id: data.user_id, customer_id: data.customer_id })
+    .update(data);
 }
 
 export function deleteAlarm(

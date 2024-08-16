@@ -41,7 +41,13 @@ CREATE TABLE IF NOT EXISTS `mydatabase`.`alarm` (
 );
 
 
--- INSERT INTO users (username, password, age) VALUES ('김현수', '3333',1);
+INSERT INTO users (phone, name, password) VALUES ('+821000000000','김현수', '1234');
+
+Insert into customer (user_id, phone, name, age) values (1, '+821000000000', '조코딩', 25);
+
+insert into alarm (user_id, customer_id, day_of_week, time, is_active, script) values (1, 1, '[true, true, true, true, true, true, true]', '04:10', true, '안녕하세요. 오늘은 무엇을 하실 예정인가요?');
+
+insert into alarm (user_id, customer_id, day_of_week, time, is_active, script) values (1, 1, '[true, true, true, true, true, true, true]', '04:11', true, '조코딩님 오늘 약은 드셨나요?');
 -- INSERT INTO users (username, password, age) VALUES ('조코딩', '1111',2);
 -- INSERT INTO users (username, password, age) VALUES ('김태영', '2222',3);
 

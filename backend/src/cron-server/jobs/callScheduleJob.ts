@@ -1,3 +1,4 @@
+import { IAlarmSchema } from "src/types/schema";
 import config from "../../config";
 import db from "../../db/knexConfig";
 
@@ -25,13 +26,22 @@ export async function checkValidAlarm() {
   ).getDay();
 
   try {
-    const alarms = await db("alarm")
+    const alarms: IAlarmSchema[] = await db("alarm")
       .whereRaw("TIME_FORMAT(time, '%H:%i') = ?", [currentTime])
-      .andWhere({ is_active: true });
+      .andWhere("is_active", true);
 
     if (alarms.length > 0) {
-      alarms.forEach((alarm: any) => {
-        if (alarm.day_of_week[dayOfWeek]) {
+      alarms.forEach(async (alarm) => {
+        if (
+          alarm.day_of_week[dayOfWeek] ||
+          alarm.day_of_week.every((day) => day === false)
+        ) {
+          if (alarm.day_of_week.every((day) => day === false)) {
+            await db("alarm")
+              .update({ is_active: false })
+              .where("id", alarm.id);
+          }
+
           console.log(`Valid alarm found: ${alarm.id}, Time: ${alarm.time}`);
           // 여기서 알람을 처리하는 로직을 추가할 수 있습니다.
         }

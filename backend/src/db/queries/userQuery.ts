@@ -1,6 +1,6 @@
 import { IAlarmSchema, ICustomerSchema, IUserSchema } from "src/types/schema";
 import db from "../knexConfig";
-import { IAlarm, ICustomerInfo, infoGetResponseDto } from "@shared/dto";
+import { IAlarm, ICustomerInfo, InfoGetResponseDto } from "@shared/dto";
 
 export function insert(
   phone: string,
@@ -18,18 +18,11 @@ export function getByPhone(phone: string): Promise<IUserSchema[]> {
   return db("users").where("phone", phone);
 }
 
-export function update(
-  id: number,
-  name: string,
-  password: string
-): Promise<void> {
-  return db("users").where("id", id).update({
-    name: name,
-    password: password,
-  });
+export function update(data: IUserSchema): Promise<void> {
+  return db("users").where("id", data.id).update(data);
 }
 
-export async function getAllInfo(userId: number): Promise<infoGetResponseDto> {
+export async function getAllInfo(userId: number): Promise<InfoGetResponseDto> {
   const userInfo: Pick<IUserSchema, "phone" | "name"> = await db("users")
     .select("phone", "name")
     .where({ id: userId })
@@ -52,7 +45,6 @@ export async function getAllInfo(userId: number): Promise<infoGetResponseDto> {
 
     const alarm: (IAlarm & { id: number })[] = alarmSchedule.map((alarm) => ({
       id: alarm.id,
-      isRepetition: alarm.is_repetition,
       dayOfWeek: alarm.day_of_week,
       time: alarm.time,
       isActive: alarm.is_active,

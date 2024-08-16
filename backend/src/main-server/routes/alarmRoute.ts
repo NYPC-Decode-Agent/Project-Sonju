@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 import { sessionChecker } from "../middlewares/authMiddleware";
-import { alarmPostRequestDto } from "@shared/dto";
+import { AlarmPostRequestDto, AlarmPutRequestDto } from "@shared/dto";
 import * as alarmQuery from "../../db/queries/alarmQuery";
 
 const router = Router();
@@ -9,13 +9,16 @@ router.post(
   "/api/alarm",
   sessionChecker,
   async (req: Request, res: Response) => {
-    const body: alarmPostRequestDto = req.body;
+    const body: AlarmPostRequestDto = req.body;
     try {
-      const result = await alarmQuery.insertAlarm(
-        req.session.userId!,
-        body.customerInfo.id,
-        body.alarm
-      );
+      await alarmQuery.insertAlarm({
+        user_id: req.session.userId!,
+        customer_id: body.customerInfo.id,
+        day_of_week: body.alarm.dayOfWeek,
+        time: body.alarm.time,
+        is_active: body.alarm.isActive,
+        script: body.alarm.script,
+      });
     } catch (err: any) {
       res.status(400).json({ message: err.message });
       return;
@@ -28,13 +31,17 @@ router.put(
   "/api/alarm",
   sessionChecker,
   async (req: Request, res: Response) => {
-    const body: alarmPostRequestDto = req.body;
+    const body: AlarmPutRequestDto = req.body;
     try {
-      await alarmQuery.updateAlarm(
-        req.session.userId!,
-        body.customerInfo.id,
-        body.alarm
-      );
+      await alarmQuery.updateAlarm({
+        id: body.alarm.id,
+        customer_id: body.customerInfo.id,
+        user_id: req.session.userId!,
+        day_of_week: body.alarm.dayOfWeek,
+        time: body.alarm.time,
+        is_active: body.alarm.isActive,
+        script: body.alarm.script,
+      });
     } catch (err: any) {
       res.status(400).json({ message: err.message });
       return;
@@ -47,7 +54,7 @@ router.delete(
   "/api/alarm",
   sessionChecker,
   async (req: Request, res: Response) => {
-    const body: alarmPostRequestDto = req.body;
+    const body: AlarmPostRequestDto = req.body;
     try {
       await alarmQuery.deleteAlarm(req.session.userId!, body.customerInfo.id);
     } catch (err: any) {

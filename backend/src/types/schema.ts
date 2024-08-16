@@ -19,7 +19,6 @@ export interface IAlarmSchema {
   id: number;
   user_id: number;
   customer_id: number;
-  is_repetition: boolean;
   day_of_week: boolean[];
   time: string;
   is_active: boolean;
