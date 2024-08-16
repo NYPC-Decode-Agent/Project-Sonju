@@ -55,9 +55,11 @@ const SignupForm: React.FC = () => {
             required
           />
 
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            회원가입
-          </Button>
+          <div className="mt-4">
+            <Button type="submit" variant="contained" color="primary" fullWidth>
+              회원가입
+            </Button>
+          </div>
         </form>
       </Box>
     </div>
