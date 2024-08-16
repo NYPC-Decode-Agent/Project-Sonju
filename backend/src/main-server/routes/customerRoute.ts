@@ -11,7 +11,7 @@ import * as customerQuery from "../../db/queries/customerQuery";
 
 const router = Router();
 router.post(
-  "api/customer",
+  "/api/customer",
   sessionChecker,
   async (req: Request, res: Response) => {
     const body: customerPostRequestDto = req.body;
@@ -31,7 +31,7 @@ router.post(
 );
 
 router.put(
-  "api/customer",
+  "/api/customer",
   sessionChecker,
   async (req: Request, res: Response) => {
     const body: customerPutRequestDto = req.body;
@@ -52,7 +52,7 @@ router.put(
 );
 
 router.delete(
-  "api/customer",
+  "/api/customer",
   sessionChecker,
   async (req: Request, res: Response) => {
     const body: customerDeleteRequestDto = req.body;
