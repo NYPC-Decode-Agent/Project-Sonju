@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Button, Container, Paper, TextField, Typography } from "@mui/material";
 
 const SignupForm: React.FC = () => {
   const [name, setName] = useState("");
@@ -13,17 +13,8 @@ const SignupForm: React.FC = () => {
   };
 
   return (
-    <div className="bg-white flex items-center justify-center min-h-screen">
-      <Box
-        sx={{
-          width: "400px",
-          margin: "50px auto",
-          padding: "20px",
-          border: "1px solid #ccc",
-          borderRadius: "8px",
-          boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-        }}
-      >
+    <Container component="main" maxWidth="xs">
+      <Paper elevation={3} style={{ padding: 20 }}>
         <Typography variant="h4" component="h1" align="center" gutterBottom>
           회원가입
         </Typography>
@@ -61,8 +52,8 @@ const SignupForm: React.FC = () => {
             </Button>
           </div>
         </form>
-      </Box>
-    </div>
+      </Paper>
+    </Container>
   );
 };
 

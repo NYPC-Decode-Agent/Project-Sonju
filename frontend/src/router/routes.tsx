@@ -1,7 +1,7 @@
 import Home from "../Home";
 import About from "../About";
 import { Navigate } from "react-router-dom";
-import Login from "../login/Login";
+import Login from "../page/login/Login";
 import Join from "../page/join/Join";
 
 const routes = [
