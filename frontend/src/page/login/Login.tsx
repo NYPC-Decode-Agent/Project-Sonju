@@ -49,7 +49,7 @@ const Login: React.FC = () => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Paper elevation={3} style={{ padding: 20 }}>
+      <Paper elevation={3} style={{ padding: 20, width: "400px" }}>
         <Typography variant="h5">로그인</Typography>
         <form onSubmit={handleSubmit}>
           <TextField

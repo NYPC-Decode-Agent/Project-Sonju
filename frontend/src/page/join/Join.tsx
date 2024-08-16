@@ -42,7 +42,7 @@ const SignupForm: React.FC = () => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Paper elevation={3} style={{ padding: 20 }}>
+      <Paper elevation={3} style={{ padding: 20, width: "400px" }}>
         <Typography variant="h4" component="h1" align="center" gutterBottom>
           회원가입
         </Typography>
