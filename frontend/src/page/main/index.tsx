@@ -17,14 +17,15 @@ export const Main = () => {
       <div className="App">
         <Header toggleSidebar={toggleSidebar} />
         <header className="App-header app-container"></header>
-        <main>
-          <Routes>
-            {routes.map((route, index) => (
-              <Route key={index} path={route.path} element={route.element} />
-            ))}
-          </Routes>
-        </main>
-
+        <div className="mt-16">
+          <main>
+            <Routes>
+              {routes.map((route, index) => (
+                <Route key={index} path={route.path} element={route.element} />
+              ))}
+            </Routes>
+          </main>
+        </div>
         <Footer />
       </div>
     </Router>
