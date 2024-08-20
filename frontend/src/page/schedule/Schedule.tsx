@@ -39,31 +39,41 @@ const ScheduleDayButton = ({ activated, text, onClick }: IScheduleDayButtonProps
 );
 
 const ScheduleDayTime = ({ activated, time, onChange }: IScheduleDayTimeProps) => (
-  <time
-    className={`inline-flex items-end gap-2 ${!activated ? "text-gray-400" : ""}`}
-  ><button onClick={() => onChange(revAmpm(time))}>{time < half ? "오전" : "오후"}</button>
+  <div
+    className={`inline-flex items-end gap-1 ${!activated ? "text-gray-400" : ""}`}
+  ><button className="mr-1" onClick={() => onChange(revAmpm(time))}>{time < half ? "오전" : "오후"}</button>
   <input
     className="w-8 text-2xl font-semibold text-right outline-none"
     type="text"
     inputMode="numeric"
-    pattern="\d*"
-    min="01"
-    max="12"
+    pattern="\d+"
     value={hour(Math.floor(time / 60)).toString().padStart(2, "0")}
     onChange={(e) => onChange(chgTime(time, capHour(Number(e.target.value)) * 60 + time % 60))}
-  />
-  :
-  <input
+    onClick={(e) => (e.target as any).select()}
+    onKeyDown={(e) => (
+      e.key === "ArrowUp"
+      ? onChange(chgTime(time, (time + 60) % half))
+      : e.key === "ArrowDown"
+        ? onChange(chgTime(time, (time - 60 + half) % half))
+        : undefined
+    )}
+  /><span className="text-2xl font-semibold">:</span><input
     className="w-8 text-2xl font-semibold outline-none"
     type="text"
     inputMode="numeric"
-    pattern="\d*"
-    min="00"
-    max="59"
+    pattern="\d+"
     value={(time % 60).toString().padStart(2, "0")}
     onChange={(e) => onChange(chgTime(time, Math.floor(time / 60) * 60 + capMinutes(Number(e.target.value))))}
+    onClick={(e) => (e.target as any).select()}
+    onKeyDown={(e) => (
+      e.key === "ArrowUp"
+      ? onChange(chgTime(time, (time + 1) % half))
+      : e.key === "ArrowDown"
+        ? onChange(chgTime(time, (time - 1 + half) % half))
+        : undefined
+    )}
   />
-  </time>
+  </div>
 );
 
 export const Schedule = ({ schedule: initialSchedule }: IScheduleProps) => {
@@ -72,7 +82,7 @@ export const Schedule = ({ schedule: initialSchedule }: IScheduleProps) => {
     const newSchedule = [...schedule];
     newSchedule[i] = ~newSchedule[i];
     setSchedule(newSchedule);
-  };
+  };  
   const changeTime = (activated: boolean, i: number) => (newTime: number) => {
     const newSchedule = [...schedule];
     newSchedule[i] = activated ? newTime : ~newTime;
