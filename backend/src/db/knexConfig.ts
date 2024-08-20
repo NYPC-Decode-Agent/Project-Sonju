@@ -4,7 +4,7 @@ import config from "../config";
 const knexConfig: Knex.Config = {
   client: "mysql2",
   connection: {
-    host: config.MY_SQL.HOST,
+    host: "127.0.0.1",
     user: config.MY_SQL.USER,
     password: config.MY_SQL.PASSWORD,
     database: config.MY_SQL.DATABASE,
