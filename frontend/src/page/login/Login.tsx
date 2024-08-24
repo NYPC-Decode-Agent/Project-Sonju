@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Button, TextField, Typography, Container, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom"; // 최신 라우팅 훅
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { Main, SmallPage } from "../../common/Container";
+import { TextField } from "../../common/TextField";
+import { Button } from "../../common/Button";
 
 // 로그인 폼 데이터 타입 정의
 interface LoginFormData {
@@ -11,11 +13,8 @@ interface LoginFormData {
 }
 
 const Login: React.FC = () => {
-  const [formData, setFormData] = useState<LoginFormData>({
-    phone: "",
-    password: "",
-  });
-  const [error, setError] = useState<string | null>(null); // 에러 상태
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate(); // 페이지 전환에 사용
 
   const { mutate: postSignIn } = useMutation({
@@ -34,59 +33,41 @@ const Login: React.FC = () => {
     },
   });
 
-  // 입력값 변경 핸들러
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
   // 폼 제출 핸들러
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    postSignIn({ phone: formData.phone, password: formData.password });
-    console.log(` sign in ${formData.phone} ${formData.password}`);
+    postSignIn({ phone: phoneNumber, password });
+    console.log(` sign in ${phoneNumber} ${password}`);
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Paper elevation={3} style={{ padding: 20, width: "400px" }}>
-        <Typography variant="h5">로그인</Typography>
-        <form onSubmit={handleSubmit}>
+    <Main>
+      <SmallPage header="로그인">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <TextField
-            variant="outlined"
-            margin="normal"
+            placeholder="전화번호"
+            type="tel"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
             required
-            fullWidth
-            label="전화번호"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            autoFocus
           />
           <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            label="비밀번호"
-            name="password"
+            placeholder="비밀번호"
             type="password"
-            value={formData.password}
-            onChange={handleChange}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
-          {error && <Typography color="error">{error}</Typography>}
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            style={{ marginTop: 20 }}
-          >
-            로그인
-          </Button>
+
+          <div className="flex flex-col mt-4 gap-3">
+            <Button type="submit">로그인</Button>
+            <Button type="submit" color="black">
+              회원가입
+            </Button>
+          </div>
         </form>
-      </Paper>
-    </Container>
+      </SmallPage>
+    </Main>
   );
 };
 

@@ -2,31 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-#root {
-  padding-top: 4rem;
-}
-#root > main {
-  display: flex;
-  flex-direction: column;
-  min-height: calc(100vh - 11.5rem);
-  align-items: center;
-  justify-content: center;
-  background: -moz-linear-gradient(top, #bfd888 0%, #f4ecc4 100%);
-  background: -webkit-linear-gradient(top, #bfd888 0%, #f4ecc4 100%);
-  background: linear-gradient(to bottom, #bfd888 0%, #f4ecc4 100%);
-  max-width: 100%;
+#root > main::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    clip-path: polygon(0 0, 0 25rem, 100% 15rem, 100% 0);
+    background: linear-gradient(to right, #bfd888 0%, #f4ecc4 100%);
+    width: 100%;
+    height: 25rem;
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family:
+        "Pretendard",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Malgun Gothic",
+        "맑은 고딕",
+        helvetica,
+        "Apple SD Gothic Neo",
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
 }

@@ -1,38 +1,27 @@
-import React from "react";
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
-interface HeaderProps {
-  toggleSidebar: () => void;
-}
-
-const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
+export const Header = () => {
   return (
-    <div className="bg-white">
-      <AppBar sx={{ zIndex: 9999 }} color="inherit">
-        <Toolbar>
-          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-            <Link to={"/"} className="no-underline text-lg">
-              Decode Agent
-            </Link>
-          </Typography>
-          <div className="flex">
-            <Button color="inherit">
-              <Link className="no-underline" to={"/signup"}>
-                회원가입
-              </Link>
-            </Button>
-            <div className="flex text-[#CCCCCC] items-center pb-1">|</div>
-            <Button color="inherit">
-              <Link className="no-underline" to={"/login"}>
-                로그인
-              </Link>
-            </Button>
-          </div>
-        </Toolbar>
-      </AppBar>
-    </div>
+    <nav className="flex z-50 items-center justify-between fixed top-0 left-0 w-full h-16 px-8 bg-white/50 backdrop-blur-sm border-b border-gray-extra-light">
+      <div className="flex gap-4">
+        <Link
+          to="/"
+          className="inline-flex w-8 text-center font-montserrat font-extrabold leading-5"
+        >
+          DECODE AGENT
+        </Link>
+      </div>
+      <div className="flex gap-4">
+        <Link to="/schedule" className="text-gray-dark">
+          스케줄 (테스트)
+        </Link>
+        <Link to="/login" className="text-gray-dark">
+          로그인
+        </Link>
+        <Link to="/signup" className="text-gray-dark">
+          회원가입
+        </Link>
+      </div>
+    </nav>
   );
 };
-
-export default Header;

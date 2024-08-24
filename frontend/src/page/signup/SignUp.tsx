@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Button, Container, Paper, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
+import { Button } from "../../common/Button";
+import { TextField } from "../../common/TextField";
+import { Main, SmallPage } from "../../common/Container";
 
-const SignupForm: React.FC = () => {
+export const SignUp: React.FC = () => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
@@ -41,48 +43,35 @@ const SignupForm: React.FC = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Paper elevation={3} style={{ padding: 20, width: "400px" }}>
-        <Typography variant="h4" component="h1" align="center" gutterBottom>
-          회원가입
-        </Typography>
-        <form onSubmit={handleSubmit}>
+    <Main>
+      <SmallPage header="회원가입">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <TextField
-            fullWidth
-            label="이름"
+            placeholder="이름"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            margin="normal"
             required
           />
           <TextField
-            fullWidth
-            label="핸드폰번호"
+            placeholder="전화번호"
             type="tel"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            margin="normal"
             required
           />
           <TextField
-            fullWidth
-            label="비밀번호"
+            placeholder="비밀번호"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            margin="normal"
             required
           />
 
           <div className="mt-4">
-            <Button type="submit" variant="contained" color="primary" fullWidth>
-              회원가입
-            </Button>
+            <Button type="submit">회원가입</Button>
           </div>
         </form>
-      </Paper>
-    </Container>
+      </SmallPage>
+    </Main>
   );
 };
-
-export default SignupForm;
