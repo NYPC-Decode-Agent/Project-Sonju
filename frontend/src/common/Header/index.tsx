@@ -6,9 +6,9 @@ export const Header = () => {
       <div className="flex gap-4">
         <Link
           to="/"
-          className="inline-flex w-8 text-center font-montserrat font-extrabold leading-5"
+          className="inline-flex w-8 gap-1 items-center text-center font-montserrat font-extrabold text-4xl"
         >
-          DECODE AGENT
+          &#123;<span className="text-base leading-5">DECODE AGENT</span>&#125;
         </Link>
       </div>
       <div className="flex gap-4">
