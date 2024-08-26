@@ -11,6 +11,13 @@ interface IScheduleDayButtonProps {
   onClick?: () => void;
 }
 
+interface IScheduleAmpmButtonProps {
+  type: boolean;
+  activated: boolean;
+  time: number;
+  onChange: (time: number) => void;
+}
+
 interface IScheduleDayTimeProps {
   activated: boolean;
   time: number;
@@ -34,7 +41,7 @@ const ScheduleDayButton = ({
   onClick,
 }: IScheduleDayButtonProps) => (
   <button
-    className={`inline-flex w-10 h-10 items-center justify-center rounded-full border transition ${
+    className={`inline-flex w-12 h-12 text-xl font-medium items-center justify-center rounded-full border transition ${
       !activated
         ? "text-gray-light border-gray-lighter hover:text-gray-medium hover:bg-secondary-900 hover:border-secondary-900"
         : "text-gray-dark border-secondary-850 bg-secondary-850"
@@ -45,20 +52,31 @@ const ScheduleDayButton = ({
   </button>
 );
 
+const ScheduleAmpmButton = ({ type, activated, time, onChange }: IScheduleAmpmButtonProps) => (
+  <button
+    className={`mr-1 border rounded transition px-2 py-1 leading-4 ${
+      !activated
+      ? "border-gray-lighter"
+      : (time < half) !== type
+        ? "border-gray-lighter hover:text-gray-medium hover:bg-secondary-900 hover:border-secondary-900 active:border-secondary-800 active:bg-secondary-800"
+        : "text-gray-dark border-secondary-850 bg-secondary-850 "
+    }`}
+    onClick={() => activated && (time < half) !== type && onChange(revAmpm(time))}
+  >{!type ? "오전" : "오후"}</button>
+);
+
 const ScheduleDayTime = ({
   activated,
   time,
   onChange,
 }: IScheduleDayTimeProps) => (
   <div
-    className={`inline-flex items-end gap-1 ${!activated ? "text-gray-lighter" : "text-gray-dark"}`}
+    className={`inline-flex items-center gap-1 ${!activated ? "text-gray-lighter" : "text-gray-dark"}`}
   >
-    <button
-      className="mr-1 hover:underline"
-      onClick={() => onChange(revAmpm(time))}
-    >
-      {time < half ? "오전" : "오후"}
-    </button>
+    <div className="inline-flex flex-col px-1 gap-1">
+      <ScheduleAmpmButton type={false} activated={activated} time={time} onChange={onChange} />
+      <ScheduleAmpmButton type={true} activated={activated} time={time} onChange={onChange} />
+    </div>
     <input
       className="w-8 text-2xl font-semibold text-right outline-none"
       type="text"
@@ -123,9 +141,9 @@ export const Schedule = ({ schedule: initialSchedule }: IScheduleProps) => {
   return (
     <Main>
       <SmallPage header="스케줄">
-        <div className="flex flex-col w-56 mx-auto items-center justify-between gap-2">
+        <div className="flex flex-col mx-auto items-center justify-between gap-2">
           {schedule.map((time, i) => (
-            <div className="flex w-full items-center justify-between">
+            <div className="flex w-64 items-center justify-between rounded-md px-4 py-2 border border-gray-light">
               <ScheduleDayButton
                 activated={time >= 0}
                 text={dayString[i]}
