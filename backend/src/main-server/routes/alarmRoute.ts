@@ -1,6 +1,10 @@
 import { Request, Response, Router } from "express";
 import { sessionChecker } from "../middlewares/authMiddleware";
-import { AlarmPostRequestDto, AlarmPutRequestDto } from "@shared/dto";
+import {
+  AlarmDeleteRequestDto,
+  AlarmPostRequestDto,
+  AlarmPutRequestDto,
+} from "@shared/dto";
 import * as alarmQuery from "../../db/queries/alarmQuery";
 
 const router = Router();
@@ -54,9 +58,13 @@ router.delete(
   "/api/alarm",
   sessionChecker,
   async (req: Request, res: Response) => {
-    const body: AlarmPostRequestDto = req.body;
+    const body: AlarmDeleteRequestDto = req.body;
     try {
-      await alarmQuery.deleteAlarm(req.session.userId!, body.customerInfo.id);
+      await alarmQuery.deleteAlarm(
+        req.session.userId!,
+        body.customerInfo.id,
+        body.alarm.id
+      );
     } catch (err: any) {
       res.status(400).json({ message: err.message });
       return;
