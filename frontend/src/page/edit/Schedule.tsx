@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Main, SmallPage } from "../../common/Container";
 
 export interface IScheduleProps {
   schedule: number[]; // 길이 7, dayOfWeek[0]: 일요일, dayOfWeek[1]: 월요일
@@ -139,25 +138,21 @@ export const Schedule = ({ schedule: initialSchedule }: IScheduleProps) => {
     setSchedule(newSchedule);
   };
   return (
-    <Main>
-      <SmallPage header="스케줄">
-        <div className="flex flex-col mx-auto items-center justify-between gap-2">
-          {schedule.map((time, i) => (
-            <div className="flex w-64 items-center justify-between rounded-md px-4 py-2 border border-gray-light">
-              <ScheduleDayButton
-                activated={time >= 0}
-                text={dayString[i]}
-                onClick={toggleTime(i)}
-              />
-              <ScheduleDayTime
-                activated={time >= 0}
-                time={nabs(time)}
-                onChange={changeTime(time >= 0, i)}
-              />
-            </div>
-          ))}
+    <>
+      {schedule.map((time, i) => (
+        <div key={i} className="flex w-full items-center justify-between rounded-md px-4 py-2 border border-gray-light">
+          <ScheduleDayButton
+            activated={time >= 0}
+            text={dayString[i]}
+            onClick={toggleTime(i)}
+          />
+          <ScheduleDayTime
+            activated={time >= 0}
+            time={nabs(time)}
+            onChange={changeTime(time >= 0, i)}
+          />
         </div>
-      </SmallPage>
-    </Main>
+      ))}
+    </>
   );
 };
