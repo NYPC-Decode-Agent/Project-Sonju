@@ -91,6 +91,12 @@ module.exports = {
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
       },
+      letterSpacing: {
+        "tighter": "-0.0625em",
+        "tight": "-0.03125em",
+        "wide": "0.03125em",
+        "wider": "0.0625em",
+      }
     },
   },
   plugins: [],
