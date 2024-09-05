@@ -12,7 +12,7 @@ export const Header = () => {
         </Link>
       </div>
       <div className="flex gap-4">
-        <Link to="/schedule" className="text-gray-dark">
+        <Link to="/edit" className="text-gray-dark">
           스케줄 (테스트)
         </Link>
         <Link to="/login" className="text-gray-dark">
