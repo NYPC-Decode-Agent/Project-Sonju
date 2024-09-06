@@ -1,43 +1,26 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // 최신 라우팅 훅
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import { Main, SmallPage } from "../../common/Container";
 import { TextField } from "../../common/TextField";
 import { Button } from "../../common/Button";
-
-// 로그인 폼 데이터 타입 정의
-interface LoginFormData {
-  phone: string;
-  password: string;
-}
+import { useSignInMutation } from "@/api";
 
 const Login: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // 페이지 전환에 사용
 
-  const { mutate: postSignIn } = useMutation({
-    mutationFn: ({ phone, password }: { phone: string; password: string }) =>
-      axios.post("http://localhost:4000/api/user/sign-in", {
-        userInfo: {
-          phone,
-          password,
-        },
-      }),
-    onSuccess: () => {
-      console.log("success");
-    },
-    onError: () => {
-      console.log("error");
-    },
-  });
+  const signInMutation = useSignInMutation();
+  const navigate = useNavigate();
 
-  // 폼 제출 핸들러
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    postSignIn({ phone: phoneNumber, password });
-    console.log(` sign in ${phoneNumber} ${password}`);
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    signInMutation.mutate({
+      userInfo: {
+        phone: phoneNumber,
+        password,
+      },
+    });
+    navigate("/edit");
   };
 
   return (
