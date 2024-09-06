@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "rootDir": "../",
-    "paths": { "@shared/*": ["../shared/*"] },
+    "paths": {
+      "@/*": ["./src/*"],
+      "@shared/*": ["../shared/*"]
+    },
 
     "target": "ES2022",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
