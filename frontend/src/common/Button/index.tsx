@@ -10,7 +10,9 @@ type AnchorHTMLProps = React.DetailedHTMLProps<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,
   HTMLAnchorElement
 >;
-type AnchorProps = Omit<AnchorHTMLProps, "className"> & {};
+type AnchorProps = Omit<AnchorHTMLProps, "className"> & {
+  color?: "primary" | "secondary" | "black";
+};
 
 const buttonCss =
   "inline-grid gap-2 w-full h-12 px-5 border-0 rounded items-center justify-center no-underline font-medium text-white cursor-pointer select-none";
@@ -36,8 +38,18 @@ export const Button = ({
   </button>
 );
 
-export const ButtonLink = ({ children, ...props }: AnchorProps) => (
-  <a className={buttonCss} {...props}>
+export const ButtonLink = ({ children, color = "primary", ...props }: AnchorProps) => (
+  <a className={`${buttonCss} ${
+      color === "primary"
+        ? "bg-primary-650"
+        : color === "secondary"
+          ? "bg-secondary-650"
+          : color === "black"
+            ? "bg-black"
+            : ""
+    }`}
+    {...props}
+  >
     {children}
   </a>
 );

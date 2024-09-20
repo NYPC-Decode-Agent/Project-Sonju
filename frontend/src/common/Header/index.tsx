@@ -23,7 +23,7 @@ const GuestHeader = () => (
 export const Header = () => {
   const { data: userInfo, isSuccess } = useUserInfoQuery();
   return (
-    <nav className="flex z-50 items-center justify-between fixed top-0 left-0 w-full h-16 px-8 bg-gray-1000/50 backdrop-blur-sm border-b border-gray-extra-light">
+    <nav className="flex z-50 items-center justify-between fixed top-0 left-0 w-full h-14 px-8 bg-gray-1000/50 backdrop-blur-sm border-b border-gray-extra-light">
       <div className="flex gap-4">
         <Link to="/" className="inline-flex w-20 items-center">
           <img src="/logo.png" width="80" height="40" />
