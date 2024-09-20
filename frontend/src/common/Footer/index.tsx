@@ -1,5 +1,5 @@
 export const Footer = () => (
-  <footer className="bg-secondary-950 px-8 py-6">
+  <footer className="bg-gray-900 px-8 py-6">
     <p>
       <a href="#">이용약관</a> |{" "}
       <b>
