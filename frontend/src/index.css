@@ -5,20 +5,11 @@
 body {
     margin: 0;
     background: white;
-    font-family:
-        "Pretendard",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Malgun Gothic",
-        "맑은 고딕",
-        helvetica,
-        "Apple SD Gothic Neo",
-        sans-serif;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', '맑은 고딕', helvetica, 'Apple SD Gothic Neo', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-        monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

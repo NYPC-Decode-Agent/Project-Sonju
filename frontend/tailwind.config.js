@@ -96,7 +96,11 @@ module.exports = {
         "tight": "-0.03125em",
         "wide": "0.03125em",
         "wider": "0.0625em",
-      }
+      },
+      fontFamily: {
+        sans: "'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', '맑은 고딕', helvetica, 'Apple SD Gothic Neo', sans-serif",
+        haru: "'Jal_Haru Medium', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', '맑은 고딕', helvetica, 'Apple SD Gothic Neo', sans-serif",
+      },
     },
   },
   plugins: [],

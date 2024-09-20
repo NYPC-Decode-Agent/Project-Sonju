@@ -33,7 +33,7 @@ export const SmallPage = ({ children, header, subheader, size = 1, gap = 0 }: Sm
       ? "gap-8"
       : ""
   } w-full px-16 pt-10 pb-20 rounded-xl border border-gray-lighter bg-white shadow-light-md`}>
-    {subheader && <h3 className="flex justify-center text-md text-gray-light font-medium tracking-tight">{subheader}</h3>}
+    {subheader && <h3 className="flex justify-center text-md text-gray-light font-haru font-medium tracking-tight">{subheader}</h3>}
     <h2 className={`flex justify-center ${subheader ? "pt-2" : "pt-6"} pb-6 border-b border-gray-extra-light ${gap === 4 ? "mb-6" : gap === 8 ? "mb-2" : "mb-10"} text-3xl font-bold tracking-tight`}>
       {header}
     </h2>
