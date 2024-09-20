@@ -42,9 +42,9 @@ const ScheduleDayButton = ({
   <button
     className={`inline-flex w-12 h-12 text-xl font-medium items-center justify-center rounded-full border transition ${
       !activated
-        ? "text-gray-light border-gray-lighter hover:text-gray-medium hover:bg-secondary-900 hover:border-secondary-900"
-        : "text-gray-dark border-secondary-850 bg-secondary-850"
-    } active:border-secondary-800 active:bg-secondary-800`}
+        ? "text-gray-light border-gray-lighter hover:text-gray-medium hover:bg-primary-850 hover:border-primary-850"
+        : "text-gray-dark border-primary-800 bg-primary-800"
+    } active:border-primary-750 active:bg-primary-750`}
     onClick={onClick}
   >
     {text}
@@ -57,8 +57,8 @@ const ScheduleAmpmButton = ({ type, activated, time, onChange }: IScheduleAmpmBu
       !activated
       ? "border-gray-lighter"
       : (time < half) !== type
-        ? "border-gray-lighter hover:text-gray-medium hover:bg-secondary-900 hover:border-secondary-900 active:border-secondary-800 active:bg-secondary-800"
-        : "text-gray-dark border-secondary-850 bg-secondary-850 "
+        ? "border-gray-lighter hover:text-gray-medium hover:bg-primary-850 hover:border-primary-850 active:border-primary-750 active:bg-primary-750"
+        : "text-gray-dark border-primary-800 bg-primary-800"
     }`}
     onClick={() => activated && (time < half) !== type && onChange(revAmpm(time))}
   >{!type ? "오전" : "오후"}</button>

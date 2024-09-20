@@ -25,7 +25,7 @@ const Login: React.FC = () => {
 
   return (
     <Main>
-      <SmallPage header="로그인">
+      <SmallPage header="로그인" subheader="안녕하세요? 씀씀이예요">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <TextField
             placeholder="전화번호"

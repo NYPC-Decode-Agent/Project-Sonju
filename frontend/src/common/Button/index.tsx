@@ -23,7 +23,7 @@ export const Button = ({
   <button
     className={`${buttonCss} ${
       color === "primary"
-        ? "bg-primary-700"
+        ? "bg-primary-650"
         : color === "secondary"
           ? "bg-secondary-650"
           : color === "black"
