@@ -11,8 +11,9 @@ export const Edit = ({ schedule }: IScheduleProps) => {
     phone: '01012345678',
     birth: '19500101',
     address: '서울특별시 강남구 테헤란로',
-    memo: '심장약 복용',
-    emergencyPhone: '01011111111',
+    memo: '심장약 복용: 특별 케어 필요',
+    aiScript: '안녕하세요. 씀씀이예요.',
+    emergencyPhone: '+821011111111',
     emergencyCount: '3',
   });
   return (
@@ -44,10 +45,16 @@ export const Edit = ({ schedule }: IScheduleProps) => {
               value={form.address}
               onChange={onChange}
             />
-            <TextArea
+            <TextField
               name="memo"
-              placeholder="특별케어"
+              placeholder="메모"
               value={form.memo}
+              onChange={onChange}
+            />
+            <TextArea
+              name="aiScript"
+              placeholder="AI 대화 스크립트"
+              value={form.aiScript}
               onChange={onChange}
             />
             <TextField
