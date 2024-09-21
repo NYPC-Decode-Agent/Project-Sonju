@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export interface IScheduleProps {
   schedule: number[]; // 길이 7, dayOfWeek[0]: 일요일, dayOfWeek[1]: 월요일
@@ -23,7 +23,7 @@ interface IScheduleDayTimeProps {
   onChange: (time: number) => void;
 }
 
-const dayString = ["일", "월", "화", "수", "목", "금", "토"];
+const dayString = ['일', '월', '화', '수', '목', '금', '토'];
 const half = 12 * 60;
 
 const capHour = (x: number) => Math.floor(x > 12 ? x % 10 : x === 12 ? 0 : x);
@@ -40,10 +40,10 @@ const ScheduleDayButton = ({
   onClick,
 }: IScheduleDayButtonProps) => (
   <button
-    className={`inline-flex w-12 h-12 text-xl font-medium items-center justify-center rounded-full border transition ${
+    className={`inline-flex h-12 w-12 items-center justify-center rounded-full border text-xl font-medium transition ${
       !activated
-        ? "text-gray-light border-gray-lighter hover:text-gray-medium hover:bg-primary-850 hover:border-primary-850"
-        : "text-gray-dark border-primary-800 bg-primary-800"
+        ? 'border-gray-lighter text-gray-light hover:border-primary-850 hover:bg-primary-850 hover:text-gray-medium'
+        : 'border-primary-800 bg-primary-800 text-gray-dark'
     } active:border-primary-750 active:bg-primary-750`}
     onClick={onClick}
   >
@@ -51,17 +51,24 @@ const ScheduleDayButton = ({
   </button>
 );
 
-const ScheduleAmpmButton = ({ type, activated, time, onChange }: IScheduleAmpmButtonProps) => (
+const ScheduleAmpmButton = ({
+  type,
+  activated,
+  time,
+  onChange,
+}: IScheduleAmpmButtonProps) => (
   <button
-    className={`mr-1 border rounded transition px-2 py-1 leading-4 ${
+    className={`mr-1 rounded border px-2 py-1 leading-4 transition ${
       !activated
-      ? "border-gray-lighter"
-      : (time < half) !== type
-        ? "border-gray-lighter hover:text-gray-medium hover:bg-primary-850 hover:border-primary-850 active:border-primary-750 active:bg-primary-750"
-        : "text-gray-dark border-primary-800 bg-primary-800"
+        ? 'border-gray-lighter'
+        : time < half !== type
+          ? 'border-gray-lighter hover:border-primary-850 hover:bg-primary-850 hover:text-gray-medium active:border-primary-750 active:bg-primary-750'
+          : 'border-primary-800 bg-primary-800 text-gray-dark'
     }`}
-    onClick={() => activated && (time < half) !== type && onChange(revAmpm(time))}
-  >{!type ? "오전" : "오후"}</button>
+    onClick={() => activated && time < half !== type && onChange(revAmpm(time))}
+  >
+    {!type ? '오전' : '오후'}
+  </button>
 );
 
 const ScheduleDayTime = ({
@@ -70,20 +77,30 @@ const ScheduleDayTime = ({
   onChange,
 }: IScheduleDayTimeProps) => (
   <div
-    className={`inline-flex items-center gap-1 ${!activated ? "text-gray-lighter" : "text-gray-dark"}`}
+    className={`inline-flex items-center gap-1 ${!activated ? 'text-gray-lighter' : 'text-gray-dark'}`}
   >
-    <div className="inline-flex flex-col px-1 gap-1">
-      <ScheduleAmpmButton type={false} activated={activated} time={time} onChange={onChange} />
-      <ScheduleAmpmButton type={true} activated={activated} time={time} onChange={onChange} />
+    <div className="inline-flex flex-col gap-1 px-1">
+      <ScheduleAmpmButton
+        type={false}
+        activated={activated}
+        time={time}
+        onChange={onChange}
+      />
+      <ScheduleAmpmButton
+        type={true}
+        activated={activated}
+        time={time}
+        onChange={onChange}
+      />
     </div>
     <input
-      className="w-8 text-2xl font-semibold text-right outline-none"
+      className="w-8 text-right text-2xl font-semibold outline-none"
       type="text"
       inputMode="numeric"
       pattern="\d+"
       value={hour(Math.floor(time / 60))
         .toString()
-        .padStart(2, "0")}
+        .padStart(2, '0')}
       onChange={(e) =>
         onChange(
           chgTime(time, capHour(Number(e.target.value)) * 60 + (time % 60)),
@@ -91,9 +108,9 @@ const ScheduleDayTime = ({
       }
       onClick={(e) => (e.target as any).select()}
       onKeyDown={(e) =>
-        e.key === "ArrowUp"
+        e.key === 'ArrowUp'
           ? onChange(chgTime(time, (time + 60) % half))
-          : e.key === "ArrowDown"
+          : e.key === 'ArrowDown'
             ? onChange(chgTime(time, (time - 60 + half) % half))
             : undefined
       }
@@ -104,7 +121,7 @@ const ScheduleDayTime = ({
       type="text"
       inputMode="numeric"
       pattern="\d+"
-      value={(time % 60).toString().padStart(2, "0")}
+      value={(time % 60).toString().padStart(2, '0')}
       onChange={(e) =>
         onChange(
           chgTime(
@@ -115,9 +132,9 @@ const ScheduleDayTime = ({
       }
       onClick={(e) => (e.target as any).select()}
       onKeyDown={(e) =>
-        e.key === "ArrowUp"
+        e.key === 'ArrowUp'
           ? onChange(chgTime(time, (time + 1) % half))
-          : e.key === "ArrowDown"
+          : e.key === 'ArrowDown'
             ? onChange(chgTime(time, (time - 1 + half) % half))
             : undefined
       }
@@ -140,7 +157,10 @@ export const Schedule = ({ schedule: initialSchedule }: IScheduleProps) => {
   return (
     <>
       {schedule.map((time, i) => (
-        <div key={i} className="flex w-full items-center justify-between rounded-md px-4 py-2 border border-gray-light">
+        <div
+          key={i}
+          className="flex w-full items-center justify-between rounded-md border border-gray-light px-4 py-2"
+        >
           <ScheduleDayButton
             activated={time >= 0}
             text={dayString[i]}

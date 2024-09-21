@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import routes from "./router/routes";
-import { Footer } from "./common/Footer";
-import { Header } from "./common/Header";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import routes from './router/routes';
+import { Footer } from './common/Footer';
+import { Header } from './common/Header';
 
 const queryClient = new QueryClient();
 
