@@ -55,7 +55,7 @@ export async function getAllInfo(userId: number): Promise<InfoGetResponseDto> {
       id: customer.id,
       phone: customer.phone,
       name: customer.name,
-      age: customer.age,
+      birthDate: customer.birth_date,
       alarm: alarm,
     });
   }
