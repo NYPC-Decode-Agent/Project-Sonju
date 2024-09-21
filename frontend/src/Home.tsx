@@ -1,6 +1,6 @@
-import { Button, ButtonLink } from './common/Button';
-import { SmallPage } from './common/Container';
-import { TextField } from './common/TextField';
+import { Button, ButtonLink } from '@/common/Button';
+import { SmallPage } from '@/common/Container';
+import { TextField } from '@/common/TextField';
 
 type HeaderProps = { children: React.ReactNode; };
 const Header = ({ children }: HeaderProps) => (
