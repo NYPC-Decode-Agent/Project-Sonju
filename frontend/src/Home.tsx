@@ -1,4 +1,5 @@
 import { Button, ButtonLink } from './common/Button';
+import { SmallPage } from './common/Container';
 import { TextField } from './common/TextField';
 
 type HeaderProps = { children: React.ReactNode; };
@@ -51,30 +52,23 @@ const InquiryForm = () => {
     alert('문의사항 답변은 해당 연락처로 연락드리겠습니다.');
   };
   return (
-    <form
-      className="ml-20 flex flex-1 flex-col items-center gap-4 rounded-xl border border-gray-lighter bg-white/50 p-8"
-      onSubmit={handleSummit}
-    >
-      <h3 className="text-md flex justify-center font-haru font-medium tracking-tight text-gray-light">
-        궁금하신 점이 있으신가요?
-      </h3>
-      <h2 className="flex justify-center self-stretch border-b border-gray-extra-light pb-6 text-3xl font-bold tracking-tight">
-        문의하기
-      </h2>
-      <TextField placeholder="이름" type="text" required />
-      <TextField placeholder="전화번호" type="tel" required />
-      <TextField placeholder="문의사항" type="text" required />
-      <div className="mt-4 flex w-48 flex-col gap-3">
-        <Button type="submit">문의하기</Button>
-      </div>
-    </form>
+    <SmallPage header="문의하기" subheader="궁금하신 점이 있으신가요?" color="bg-white/50" padding={10}>
+      <form onSubmit={handleSummit} className="flex flex-col items-center gap-3">
+        <TextField placeholder="이름" type="text" required />
+        <TextField placeholder="전화번호" type="tel" required />
+        <TextField placeholder="문의사항" type="text" required />
+        <div className="mt-3 w-full max-w-48">
+          <Button type="submit">문의하기</Button>
+        </div>
+      </form>
+    </SmallPage>
   );
 };
 
 const Home = () => (
   <div className="bg-gray-1000 pt-14">
-    <div className="flex items-center justify-between bg-[url(/bg-wide.png)] bg-cover px-48 py-24">
-      <div className="flex flex-row">
+    <div className="flex items-center justify-center bg-[url(/bg-wide.png)] bg-cover px-24 py-16 gap-36">
+      <div className="flex flex-row flex-shrink-0">
         <div className="flex flex-col gap-6">
           <h2 className="font-haru font-medium">
             마음을 쓰는 AI 통화서비스 '씀씀이'
