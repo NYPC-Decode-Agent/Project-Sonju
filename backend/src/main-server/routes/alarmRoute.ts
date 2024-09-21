@@ -17,11 +17,16 @@ router.post(
     try {
       await alarmQuery.insertAlarm({
         user_id: req.session.userId!,
-        customer_id: body.customerInfo.id,
-        day_of_week: body.alarm.dayOfWeek,
         time: body.alarm.time,
-        is_active: body.alarm.isActive,
-        script: body.alarm.script,
+        is_active: body.alarm.is_active,
+        ai_script: body.alarm.ai_script,
+        phone: body.alarm.phone,
+        birth_date: body.alarm.birth_date,
+        address: body.alarm.address,
+        is_repetition: false,
+        memo: body.alarm.memo,
+        emergency_phone: body.alarm.emergency_phone,
+        emergency_count: body.alarm.emergency_count,
       });
     } catch (err: any) {
       res.status(400).json({ message: err.message });
@@ -39,12 +44,17 @@ router.put(
     try {
       await alarmQuery.updateAlarm({
         id: body.alarm.id,
-        customer_id: body.customerInfo.id,
         user_id: req.session.userId!,
-        day_of_week: body.alarm.dayOfWeek,
         time: body.alarm.time,
-        is_active: body.alarm.isActive,
-        script: body.alarm.script,
+        is_active: body.alarm.is_active,
+        ai_script: body.alarm.ai_script,
+        phone: body.alarm.phone,
+        birth_date: body.alarm.birth_date,
+        address: body.alarm.address,
+        is_repetition: false,
+        memo: body.alarm.memo,
+        emergency_phone: body.alarm.emergency_phone,
+        emergency_count: body.alarm.emergency_count,
       });
     } catch (err: any) {
       res.status(400).json({ message: err.message });

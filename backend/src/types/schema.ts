@@ -18,9 +18,14 @@ export interface ICustomerSchema {
 export interface IAlarmSchema {
   id: number;
   user_id: number;
-  customer_id: number;
-  day_of_week: boolean[];
-  time: string;
+  phone: string;
+  birth_date: string;
+  address: string;
+  is_repetition: boolean;
+  time: (string | null)[];
   is_active: boolean;
-  script: string;
+  ai_script: string;
+  memo: string;
+  emergency_phone: string;
+  emergency_count: number;
 }
