@@ -38,26 +38,11 @@ export async function getAllInfo(userId: number): Promise<InfoGetResponseDto> {
 
   const customerInfo: ICustomerInfo[] = [];
 
-  for (const customer of customers) {
-    const alarmSchedule: IAlarmSchema[] = await db("alarm")
-      .select()
-      .where({ user_id: userId, customer_id: customer.id });
+  const alarmSchedule: IAlarmSchema[] = await db("alarm")
+    .select()
+    .where({ user_id: userId });
 
-    const alarm: (IAlarm & { id: number })[] = alarmSchedule.map((alarm) => ({
-      id: alarm.id,
-      dayOfWeek: alarm.day_of_week,
-      time: alarm.time,
-      isActive: alarm.is_active,
-      script: alarm.script,
-    }));
+  const alarmInfo: (IAlarm & { id: number })[] = alarmSchedule;
 
-    customerInfo.push({
-      id: customer.id,
-      phone: customer.phone,
-      name: customer.name,
-      birthDate: customer.birth_date,
-      alarm: alarm,
-    });
-  }
-  return { userInfo, customerInfo };
+  return { userInfo, alarmInfo };
 }

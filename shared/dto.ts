@@ -4,7 +4,7 @@ export interface InfoGetResponseDto {
     phone: string;
     name: string;
   };
-  customerInfo: ICustomerInfo[];
+  alarmInfo: (IAlarm & { id: number })[];
 }
 
 export interface ICustomerInfo {
@@ -16,10 +16,15 @@ export interface ICustomerInfo {
 }
 
 export interface IAlarm {
-  dayOfWeek: boolean[];
-  time: string;
-  isActive: boolean;
-  script: string;
+  is_active: boolean;
+  phone: string;
+  birth_date: string;
+  address: string;
+  time: (string | null)[];
+  ai_script: string;
+  memo: string;
+  emergency_phone: string;
+  emergency_count: number;
 }
 
 // 회원가입
@@ -86,14 +91,7 @@ export interface AlarmPutRequestDto {
   customerInfo: {
     id: number;
   };
-  alarm: {
-    id: number;
-    isRepetition: boolean;
-    dayOfWeek: boolean[];
-    time: string;
-    isActive: boolean;
-    script: string;
-  };
+  alarm: IAlarm & { id: number };
 }
 
 // customer의 alarm 삭제
