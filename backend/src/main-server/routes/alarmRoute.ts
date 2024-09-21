@@ -17,6 +17,7 @@ router.post(
     try {
       await alarmQuery.insertAlarm({
         user_id: req.session.userId!,
+        name: body.alarm.name,
         time: body.alarm.time,
         is_active: body.alarm.is_active,
         ai_script: body.alarm.ai_script,
@@ -45,6 +46,7 @@ router.put(
       await alarmQuery.updateAlarm({
         id: body.alarm.id,
         user_id: req.session.userId!,
+        name: body.alarm.name,
         time: body.alarm.time,
         is_active: body.alarm.is_active,
         ai_script: body.alarm.ai_script,

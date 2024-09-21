@@ -18,6 +18,7 @@ export interface ICustomerSchema {
 export interface IAlarmSchema {
   id: number;
   user_id: number;
+  name: string;
   phone: string;
   birth_date: string;
   address: string;

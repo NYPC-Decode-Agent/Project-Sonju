@@ -16,6 +16,7 @@ export interface ICustomerInfo {
 }
 
 export interface IAlarm {
+  name: string;
   is_active: boolean;
   phone: string;
   birth_date: string;
