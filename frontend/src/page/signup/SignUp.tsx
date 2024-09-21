@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from "../../common/Button";
-import { TextField } from "../../common/TextField";
-import { Main, SmallPage } from "../../common/Container";
-import { useSignUpMutation } from "../../api";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '../../common/Button';
+import { TextField } from '../../common/TextField';
+import { Main, SmallPage } from '../../common/Container';
+import { useSignUpMutation } from '../../api';
 
 export const SignUp: React.FC = () => {
-  const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [password, setPassword] = useState('');
 
   const signUpMutation = useSignUpMutation();
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ export const SignUp: React.FC = () => {
         password,
       },
     });
-    navigate("/edit");
+    navigate('/edit');
   };
 
   return (

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // 최신 라우팅 훅
-import { Main, SmallPage } from "../../common/Container";
-import { TextField } from "../../common/TextField";
-import { Button } from "../../common/Button";
-import { useSignInMutation } from "@/api";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // 최신 라우팅 훅
+import { Main, SmallPage } from '../../common/Container';
+import { TextField } from '../../common/TextField';
+import { Button } from '../../common/Button';
+import { useSignInMutation } from '@/api';
 
 const Login: React.FC = () => {
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [password, setPassword] = useState('');
 
   const signInMutation = useSignInMutation();
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const Login: React.FC = () => {
         password,
       },
     });
-    navigate("/edit");
+    navigate('/edit');
   };
 
   return (
@@ -42,7 +42,7 @@ const Login: React.FC = () => {
             required
           />
 
-          <div className="flex flex-col mt-4 gap-3">
+          <div className="mt-4 flex flex-col gap-3">
             <Button type="submit">로그인</Button>
             <Button type="submit" color="black">
               회원가입
