@@ -17,7 +17,7 @@ export const Edit = ({ schedule }: IScheduleProps) => {
   });
   return (
     <Main>
-      <SmallPage header="정보 수정 / 스케줄 관리" size={3} gap={8}>
+      <SmallPage header="정보 수정 / 스케줄 관리" size={3}>
         <div className="mb-4 flex justify-between">
           <div className="flex w-80 flex-col gap-4">
             <TextField
@@ -67,7 +67,9 @@ export const Edit = ({ schedule }: IScheduleProps) => {
             />
           </div>
         </div>
-        <Button>저장</Button>
+        <div className="mt-8">
+          <Button>저장</Button>
+        </div>
       </SmallPage>
     </Main>
   );

@@ -5,9 +5,10 @@ type MainProps = {
 type SmallPageProps = {
   children: React.ReactNode;
   header: string;
+  color?: string;
   subheader?: string;
   size?: 1 | 2 | 3 | 4;
-  gap?: 0 | 4 | 8;
+  padding?: 10 | 16;
 };
 
 export const Main = ({ children }: MainProps) => (
@@ -21,11 +22,12 @@ export const SmallPage = ({
   children,
   header,
   subheader,
+  color = "bg-white",
   size = 1,
-  gap = 0,
+  padding = 16,
 }: SmallPageProps) => (
   <div
-    className={`flex flex-col ${
+    className={`w-full ${
       size === 1
         ? 'max-w-xl'
         : size === 2
@@ -33,17 +35,21 @@ export const SmallPage = ({
           : size === 3
             ? 'max-w-3xl'
             : 'max-w-4xl'
-    } ${
-      gap === 4 ? 'gap-4' : gap === 8 ? 'gap-8' : ''
-    } w-full rounded-xl border border-gray-lighter bg-white px-16 pb-20 pt-10 shadow-light-md`}
+    } border border-gray-lighter rounded-xl shadow-light-md ${
+      color
+    } pt-10 ${
+      padding === 10 ? 'px-10 pb-10' : 'px-16 pb-16'
+    } flex flex-col`}
   >
     {subheader && (
-      <h3 className="text-md flex justify-center font-haru font-medium tracking-tight text-gray-light">
+      <h3 className="text-md font-haru font-medium tracking-tight text-gray-light flex justify-center">
         {subheader}
       </h3>
     )}
     <h2
-      className={`flex justify-center ${subheader ? 'pt-2' : 'pt-6'} border-b border-gray-extra-light pb-6 ${gap === 4 ? 'mb-6' : gap === 8 ? 'mb-2' : 'mb-10'} text-3xl font-bold tracking-tight`}
+      className={`pt-2 ${
+        padding === 10 ? "pb-4 mb-7" : "pb-6 mb-10"
+      } border-b border-gray-extra-light text-3xl font-bold tracking-tight flex justify-center`}
     >
       {header}
     </h2>
