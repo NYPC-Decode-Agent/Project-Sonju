@@ -11,7 +11,7 @@ export interface ICustomerInfo {
   id: number;
   phone: string;
   name: string;
-  age: number;
+  birthDate: string;
   alarm: (IAlarm & { id: number })[];
 }
 
@@ -52,7 +52,7 @@ export interface CustomerPostRequestDto {
   customerInfo: {
     phone: string;
     name: string;
-    age: number;
+    birthDate: string;
   };
 }
 
@@ -62,7 +62,7 @@ export interface CustomerPutRequestDto {
     id: number;
     phone: string;
     name: string;
-    age: number;
+    birthDate: string;
   };
 }
 

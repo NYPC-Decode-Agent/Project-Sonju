@@ -4,13 +4,13 @@ export function insertCustomer(
   user_id: number,
   phone: string,
   name: string,
-  age: number
+  birth_date: string
 ): Promise<number[]> {
   return db("customers").insert({
     user_id: user_id,
     phone: phone,
     name: name,
-    age: age,
+    birth_date: birth_date,
   });
 }
 
@@ -19,12 +19,12 @@ export function updateCustomer(
   id: number,
   phone: string,
   name: string,
-  age: number
+  birth_date: string
 ): Promise<void> {
   return db("customers").where({ user_id: user_id, id: id }).update({
     name: name,
     phone: phone,
-    age: age,
+    birth_date: birth_date,
   });
 }
 

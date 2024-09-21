@@ -12,7 +12,7 @@ export interface ICustomerSchema {
   user_id: number;
   phone: string;
   name: string;
-  age: number;
+  birth_date: string;
 }
 
 export interface IAlarmSchema {

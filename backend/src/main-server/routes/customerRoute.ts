@@ -18,7 +18,7 @@ router.post(
         req.session.userId!,
         body.customerInfo.phone,
         body.customerInfo.name,
-        body.customerInfo.age
+        body.customerInfo.birthDate
       );
     } catch (err: any) {
       res.status(400).json({ message: err.message });
@@ -39,7 +39,7 @@ router.put(
         body.customerInfo.id,
         body.customerInfo.phone,
         body.customerInfo.name,
-        body.customerInfo.age
+        body.customerInfo.birthDate
       );
     } catch (err: any) {
       res.status(400).json({ message: err.message });
