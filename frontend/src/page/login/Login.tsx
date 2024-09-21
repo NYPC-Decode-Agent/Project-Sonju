@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // 최신 라우팅 훅
-import { Main, SmallPage } from '../../common/Container';
-import { TextField } from '../../common/TextField';
-import { Button } from '../../common/Button';
+import { Main, SmallPage } from '@/common/Container';
+import { TextField } from '@/common/TextField';
+import { Button } from '@/common/Button';
 import { useSignInMutation } from '@/api';
 
 const Login: React.FC = () => {

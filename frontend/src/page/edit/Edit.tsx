@@ -1,8 +1,8 @@
-import { Main, SmallPage } from '../../common/Container';
-import { TextField } from '../../common/TextField';
-import { TextArea } from '../../common/TextArea';
-import { Button } from '../../common/Button';
-import { useForm } from '../../utils/form';
+import { Main, SmallPage } from '@/common/Container';
+import { TextField } from '@/common/TextField';
+import { TextArea } from '@/common/TextArea';
+import { Button } from '@/common/Button';
+import { useForm } from '@/utils/form';
 import { IScheduleProps, Schedule } from './Schedule';
 
 export const Edit = ({ schedule }: IScheduleProps) => {
