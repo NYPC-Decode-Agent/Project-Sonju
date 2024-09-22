@@ -34,6 +34,9 @@ export const Header = () => {
         </Link>
       </div>
       <div className="flex gap-4">
+        <Link to="/dashboard" className="text-gray-dark">
+          정보 관리 (테스트)
+        </Link>
         <Link to="/edit" className="text-gray-dark">
           스케줄 (테스트)
         </Link>
