@@ -29,7 +29,7 @@ export const Dashboard = () => {
               <div
                 key={id}
                 onClick={() => navigate(`/edit/${id}`)}
-                className="flex flex-col w-full px-5 py-5 rounded-md border border-gray-light hover:border-gray-medium active:border-gray-dark hover:bg-primary-950 active:bg-primary-900 [transition:all_.2s] cursor-pointer select-none"
+                className="flex flex-col w-full px-10 py-8 rounded-md border border-gray-light hover:border-gray-medium active:border-gray-dark hover:bg-primary-950 active:bg-primary-900 [transition:all_.2s] cursor-pointer select-none"
               >
                 <h2 className="mb-2 text-2xl font-semibold">{name}</h2>
                 <p className="flex">
@@ -47,7 +47,7 @@ export const Dashboard = () => {
           }
         </div>
         <div className="mt-8">
-          <Button onClick={() => navigate("/edit/0")}>추가하기</Button>
+          <Button onClick={() => navigate(`/edit/${randint(3, 1000)}`)}>추가하기</Button>
         </div>
       </SmallPage>
     </Main>

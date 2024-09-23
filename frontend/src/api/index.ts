@@ -6,13 +6,15 @@ import {
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query';
 import { request } from './request';
 import { IPersonData, IPersonInfo, IUserData, IUserInfo } from './types';
-import { getStorage, setStorage } from './storage';
+import { getStorage, setStorage, removeStorage } from './storage';
 
 export const useSignUpMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: SignUpPostRequestDto) =>
-      request.post('/api/user/sign-up', data),
+    // mutationFn: (data: SignUpPostRequestDto) =>
+    //   request.post('/api/user/sign-up', data),
+    mutationFn: async({ userInfo: { phone, name } }: SignUpPostRequestDto) =>
+      setStorage("userInfo", { phone, name } satisfies IUserInfo),
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['user'] });
     },
@@ -33,7 +35,8 @@ export const useSignInMutation = () => {
 export const useSignOutMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => request.post('/api/user/sign-out'),
+    // mutationFn: () => request.post('/api/user/sign-out'),
+    mutationFn: async() => removeStorage('userInfo'),
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['user'] });
     },

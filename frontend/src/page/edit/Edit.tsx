@@ -8,6 +8,19 @@ import { Schedule } from './Schedule';
 import { useEditPersonInfoMutation, usePersonDataQuery } from '@/api';
 import { IPersonInfo } from '@/api/types';
 
+const emptyPerson = {
+  isActive: true,
+  name: '',
+  phone: '',
+  birth: '',
+  address: '',
+  memo: '',
+  aiScript: '안녕하세요. 씀씀이예요.',
+  emergencyPhone: '',
+  emergencyCount: 0,
+  schedule: [-1, -1, -1, -1, -1, -1, -1],
+};
+
 export type EditPageProps = { person: IPersonInfo; };
 const EditPage = ({ person }: EditPageProps) => {
   const { form, onChange } = useForm(person);
@@ -99,6 +112,9 @@ export const Edit = () => {
   const { id } = useParams();
   const { data: personData, isSuccess } = usePersonDataQuery();
   if (!isSuccess) return null;
-  const personInfo = personData[Number(id)];
+  const personInfo = personData[Number(id)] ?? {
+    id,
+    ...emptyPerson,
+  };
   return <EditPage person={personInfo} />;
 };

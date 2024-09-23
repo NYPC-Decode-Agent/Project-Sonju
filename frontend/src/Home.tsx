@@ -1,6 +1,8 @@
 import { Button, ButtonLink } from '@/common/Button';
 import { SmallPage } from '@/common/Container';
 import { TextField } from '@/common/TextField';
+import { Dashboard } from '@/page/Dashboard/Dashboard';
+import { useUserInfoQuery } from '@/api';
 
 type HeaderProps = { children: React.ReactNode; };
 const Header = ({ children }: HeaderProps) => (
@@ -65,7 +67,7 @@ const InquiryForm = () => {
   );
 };
 
-const Home = () => (
+const HomePage = () => (
   <div className="bg-gray-1000 pt-14 break-keep">
     <div className="flex flex-col lg:flex-row items-center justify-center bg-[url(/bg-wide.png)] bg-cover px-24 py-16 gap-36">
       <div className="flex flex-row flex-shrink-0">
@@ -186,4 +188,9 @@ const Home = () => (
   </div>
 );
 
-export default Home;
+export const Home = () => {
+  const { data: userInfo, isSuccess } = useUserInfoQuery();
+  const ok = isSuccess && userInfo !== null;
+  if (ok) return <Dashboard />
+  return <HomePage />
+};
