@@ -5,7 +5,7 @@ import { TextField } from '@/common/TextField';
 import { Button } from '@/common/Button';
 import { useSignInMutation } from '@/api';
 
-const Login: React.FC = () => {
+export const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,7 +20,7 @@ const Login: React.FC = () => {
         password,
       },
     });
-    navigate('/edit');
+    navigate('/');
   };
 
   return (

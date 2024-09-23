@@ -22,7 +22,7 @@ export const SignUp: React.FC = () => {
         password,
       },
     });
-    navigate('/edit');
+    navigate('/');
   };
 
   return (
