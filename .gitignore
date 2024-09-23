@@ -18,3 +18,5 @@ node_modules/
 
 *.tsbuildinfo
 .eslintcache
+
+dist
