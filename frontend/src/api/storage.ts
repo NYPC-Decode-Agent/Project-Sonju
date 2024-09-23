@@ -2,6 +2,7 @@ import { IPersonData } from "./types";
 
 export const setStorage = (key: string, value: unknown) => localStorage.setItem(key, JSON.stringify(value));
 export const getStorage = (key: string) => JSON.parse(localStorage.getItem(key)!);
+export const removeStorage = (key: string) => localStorage.removeItem(key);
 
 // 고객 데이터 샘플
 setStorage("personData", {
