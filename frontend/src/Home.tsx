@@ -48,7 +48,7 @@ const SmallCard = ({ image, header, children }: SmallCardProps) => (
 
 
 const InquiryForm = () => {
-  const handleSummit = (event: React.FormEvent) => {
+  const handleSummit = () => {
     alert('문의사항 답변은 해당 연락처로 연락드리겠습니다.');
   };
   return (

@@ -52,7 +52,7 @@ export const Dashboard = () => {
     <Main>
       <SmallPage header="정보 관리" size={3}>
         <div className="flex flex-col gap-4">
-          {samplePersons.map(({ id, phone, name, birth_date, address, memo, time }, i) => (
+          {samplePersons.map(({ id, phone, name, birth_date, address, memo, time }) => (
             <div
               key={id}
               onClick={() => navigate('/edit')}
