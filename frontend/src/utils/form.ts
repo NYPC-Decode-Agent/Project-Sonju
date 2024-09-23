@@ -1,19 +1,21 @@
 import { useReducer } from 'react';
 
-type ChangeEvent = { target: { name: string; value: string } };
+type ChangeEvent = { target: { name: string; value: unknown } };
+
+type State = Record<string | number, unknown>;
 
 const formReducer = <A extends ChangeEvent>(
-  state: Record<string, string>,
+  state: State,
   action: A,
 ) => {
   const { name, value } = action.target;
+  const oldValue = state[name];
   const newState = { ...state };
-  newState[name] = value;
-  console.log(newState);
+  newState[name] = typeof oldValue === "number" ? Number(value) : value;
   return newState;
 };
 
-export const useForm = <T extends Record<string, string>>(initialState: T) => {
+export const useForm = <T extends State>(initialState: T) => {
   const [form, setForm] = useReducer(formReducer, initialState);
-  return { form, onChange: setForm };
+  return { form: form as T, onChange: setForm };
 };
