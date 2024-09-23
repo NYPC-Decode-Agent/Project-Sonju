@@ -12,10 +12,7 @@ const routes = [
   { path: '/login', element: <Login /> },
   { path: '/signup', element: <SignUp /> },
   { path: '/dashboard', element: <Dashboard /> },
-  {
-    path: '/edit',
-    element: <Edit schedule={[-1, 137, -1, -1, -1, -1, -1]} />,
-  },
+  { path: '/edit/:id', element: <Edit /> },
 ];
 
 export default routes;

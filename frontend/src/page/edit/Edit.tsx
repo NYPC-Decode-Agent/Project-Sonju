@@ -1,21 +1,32 @@
+import { useNavigate, useParams } from 'react-router-dom';
 import { Main, SmallPage } from '@/common/Container';
 import { TextField } from '@/common/TextField';
 import { TextArea } from '@/common/TextArea';
 import { Button } from '@/common/Button';
 import { useForm } from '@/utils/form';
-import { IScheduleProps, Schedule } from './Schedule';
+import { Schedule } from './Schedule';
+import { useEditPersonInfoMutation, usePersonDataQuery } from '@/api';
+import { IPersonInfo } from '@/api/types';
 
-export const Edit = ({ schedule }: IScheduleProps) => {
-  const { form, onChange } = useForm({
-    name: '김철수',
-    phone: '01012345678',
-    birth: '19500101',
-    address: '서울특별시 강남구 테헤란로',
-    memo: '심장약 복용: 특별 케어 필요',
-    aiScript: '안녕하세요. 씀씀이예요.',
-    emergencyPhone: '+821011111111',
-    emergencyCount: '3',
-  });
+export type EditPageProps = { person: IPersonInfo; };
+const EditPage = ({ person }: EditPageProps) => {
+  const { form, onChange } = useForm(person);
+  const editPersonInfoMutation = useEditPersonInfoMutation();
+  const navigate = useNavigate();
+
+  const onChangeSchedule = (schedule: number[]) => {
+    onChange({ target: { name: "schedule", value: schedule } });
+  };
+
+  const save = () => {
+    // event.preventDefault();
+    editPersonInfoMutation.mutate({
+      id: person.id,
+      personInfo: form,
+    });
+    navigate('/dashboard');
+  };
+
   return (
     <Main>
       <SmallPage header="정보 수정 / 스케줄 관리" size={3}>
@@ -65,7 +76,7 @@ export const Edit = ({ schedule }: IScheduleProps) => {
             />
           </div>
           <div className="flex w-64 flex-col items-center justify-between gap-2">
-            <Schedule schedule={schedule} />
+            <Schedule schedule={form.schedule} setSchedule={onChangeSchedule} />
             <TextField
               name="emergencyCount"
               placeholder="비상 알림 기준 (0이면 비활성화)"
@@ -76,9 +87,18 @@ export const Edit = ({ schedule }: IScheduleProps) => {
           </div>
         </div>
         <div className="mt-8">
-          <Button>저장</Button>
+          <Button onClick={save}>저장</Button>
         </div>
       </SmallPage>
     </Main>
   );
+};
+
+export type EditProps = { id: number; };
+export const Edit = () => {
+  const { id } = useParams();
+  const { data: personData, isSuccess } = usePersonDataQuery();
+  if (!isSuccess) return null;
+  const personInfo = personData[Number(id)];
+  return <EditPage person={personInfo} />;
 };

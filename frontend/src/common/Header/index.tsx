@@ -26,6 +26,7 @@ const GuestHeader = () => (
 
 export const Header = () => {
   const { data: userInfo, isSuccess } = useUserInfoQuery();
+  const ok = isSuccess && userInfo !== null;
   return (
     <nav className="fixed left-0 top-0 z-50 flex h-14 w-full items-center justify-between border-b border-gray-extra-light bg-gray-1000/50 px-8 backdrop-blur-sm">
       <div className="flex gap-4">
@@ -37,14 +38,11 @@ export const Header = () => {
         <Link to="/dashboard" className="text-gray-dark">
           정보 관리 (테스트)
         </Link>
-        <Link to="/edit" className="text-gray-dark">
+        <Link to="/edit/0" className="text-gray-dark">
           스케줄 (테스트)
         </Link>
-        {isSuccess ? (
-          <UserHeader user={userInfo.data.userInfo} />
-        ) : (
-          <GuestHeader />
-        )}
+        {ok && <UserHeader user={userInfo} />}
+        {!ok && <GuestHeader />}
       </div>
     </nav>
   );
