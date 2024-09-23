@@ -11,7 +11,7 @@ type TextAreaProps = Omit<
 };
 
 const textLabelCss =
-  'flex relative w-full h-80 py-[3px] px-[18px] rounded m-px outline outline-1 outline-gray-light border-2 border-transparent cursor-text items-center hover:outline-gray-dark focus-within:border-primary-650 focus-within:outline-primary-650 hover:focus-within:outline-primary-650';
+  'flex relative w-full h-64 py-[3px] px-[18px] rounded m-px outline outline-1 outline-gray-light border-2 border-transparent cursor-text items-center hover:outline-gray-dark focus-within:border-primary-650 focus-within:outline-primary-650 hover:focus-within:outline-primary-650';
 
 const textTextAreaCss =
   'peer block contain-size w-full h-full py-3 bg-white caret-primary-650 border-none leading-5 focus:outline-none';
