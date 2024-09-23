@@ -70,6 +70,7 @@ export const Edit = ({ schedule }: IScheduleProps) => {
               name="emergencyCount"
               placeholder="비상 알림 기준 (0이면 비활성화)"
               value={form.emergencyCount + ' (번 연락 실패 시)'}
+              onClick={(e) => (e.target as any).select()}
               onChange={onChange}
             />
           </div>
