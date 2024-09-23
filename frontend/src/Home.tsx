@@ -66,8 +66,8 @@ const InquiryForm = () => {
 };
 
 const Home = () => (
-  <div className="bg-gray-1000 pt-14">
-    <div className="flex items-center justify-center bg-[url(/bg-wide.png)] bg-cover px-24 py-16 gap-36">
+  <div className="bg-gray-1000 pt-14 break-keep">
+    <div className="flex flex-col lg:flex-row items-center justify-center bg-[url(/bg-wide.png)] bg-cover px-24 py-16 gap-36">
       <div className="flex flex-row flex-shrink-0">
         <div className="flex flex-col gap-6">
           <h2 className="font-haru font-medium">
@@ -154,9 +154,9 @@ const Home = () => (
         <br />
         <Highlight>전화 한 통</Highlight>으로 바로 사용할 수 있습니다.
       </Header>
-      <div className="w-full flex items-end justify-center gap-8">
+      <div className="w-full flex flex-col lg:flex-row items-center justify-center lg:items-end gap-8">
         <img src="/images/sseumsseume_3.svg" width="139" height="217" />
-        <div className="w-full max-w-3xl grid grid-cols-2 grid-rows-2 gap-4">
+        <div className="w-full max-w-3xl grid grid-cols-1 grid-rows-4 lg:grid-cols-2 lg:grid-rows-2 gap-4">
           <SmallCard image="phone" header="지금 사용하는 핸드폰으로 바로 가능!">
             비싼 기기 장만할 필요 없이,
             <br />
