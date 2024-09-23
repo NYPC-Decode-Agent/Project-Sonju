@@ -1,27 +1,26 @@
-import { useState } from 'react';
-
 export interface IScheduleProps {
   schedule: number[]; // 길이 7, dayOfWeek[0]: 일요일, dayOfWeek[1]: 월요일
-}
+  setSchedule: (schedule: number[]) => void;
+};
 
 interface IScheduleDayButtonProps {
   activated: boolean;
   text: string;
   onClick?: () => void;
-}
+};
 
 interface IScheduleAmpmButtonProps {
   type: boolean;
   activated: boolean;
   time: number;
   onChange: (time: number) => void;
-}
+};
 
 interface IScheduleDayTimeProps {
   activated: boolean;
   time: number;
   onChange: (time: number) => void;
-}
+};
 
 const dayString = ['일', '월', '화', '수', '목', '금', '토'];
 const half = 12 * 60;
@@ -142,8 +141,7 @@ const ScheduleDayTime = ({
   </div>
 );
 
-export const Schedule = ({ schedule: initialSchedule }: IScheduleProps) => {
-  const [schedule, setSchedule] = useState(initialSchedule);
+export const Schedule = ({ schedule, setSchedule }: IScheduleProps) => {
   const toggleTime = (i: number) => () => {
     const newSchedule = [...schedule];
     newSchedule[i] = ~newSchedule[i];
